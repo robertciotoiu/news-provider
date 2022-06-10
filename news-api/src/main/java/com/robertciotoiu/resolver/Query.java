@@ -1,7 +1,7 @@
 package com.robertciotoiu.resolver;
 
 import com.robertciotoiu.model.NewsEntity;
-import com.robertciotoiu.model.NewsRepository;
+import com.robertciotoiu.repository.NewsRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
