@@ -1,7 +1,7 @@
-#News feed project
+# News feed project
 
-##It contains two applications:
-- ###News ingest application
+## It contains two applications:
+- ### News ingest application
 <pre>
 &nbsp;- Scheduled task.
 &nbsp;- Polling news feed from: <a>http://feeds.nos.nl/nosjournaal?format=xml</a>
@@ -12,7 +12,7 @@
 
 &nbsp;Doc reference: https://spring.io/guides/gs/scheduling-tasks/
 
-- ###News feed GraphQL API
+- ### News feed GraphQL API
 <pre>
 &nbsp;Endpoint:
 &nbsp;- /v1/news 
