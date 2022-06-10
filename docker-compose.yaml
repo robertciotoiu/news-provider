@@ -3,8 +3,7 @@ version: '2'
 services:
   news-api:
     image: 'news-api-image:latest'
-    build:
-      context: .
+    build: news-api\
     container_name: news-api
     ports:
       - "8888:8888"
@@ -18,8 +17,7 @@ services:
 
   news-ingestion:
     image: 'news-ingestion-image:latest'
-    build:
-      context: .
+    build: news-ingestion\
     container_name: news-ingestion
     depends_on:
       - db
