@@ -36,13 +36,26 @@ And add the GraphQL query in the body:
     }
 }
 ```
-or
+*NOTE: by default, a maximum of 100 articles will be retrieved!*
 
+Controling the pagination and size(default is 10):
 ```graphql
 {
-    findAllNews{
+    findAllNews(page: 0, size: 5){
         title,
-        publishedDate
+        publishedDate,
+        description
+    }
+}
+```
+
+Other examples:
+```graphql
+{
+    findAllNews(page: 1, size: 10){
+        title,
+        publishedDate,
+        description
     }
 }
 ```
@@ -64,6 +77,12 @@ or
 Or any other combination of the fields.
 
 ## Project description
+
+One Maven parent project, packing three Maven modules: 
+- news-api: Spring Boot application for exposing GraphQL endpoint
+- news-commons: Holding common data between the other two modules
+- news-ingestion: Spring Boot application with Scheduling Tasks for fetching and saving data
+
 - ### News ingest application
 <pre>
 &nbsp;- Scheduling task
