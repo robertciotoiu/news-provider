@@ -1,0 +1,16 @@
+"Query root"
+type NewsEntity {
+  description: String!
+  id: Int!
+  imageUrl: String!
+  publishedDate: OffsetDateTime!
+  title: String!
+  updateDate: OffsetDateTime!
+}
+type Query{
+    findAllNews: [NewsEntity]!
+    countNews: Int!
+}
+
+"Built-in scalar representing a date-time with a UTC offset"
+scalar OffsetDateTime

@@ -1,0 +1,80 @@
+package com.robertciotoiu.service;
+
+import com.robertciotoiu.model.NewsEntity;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import java.io.IOException;
+import java.net.URL;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+@Slf4j
+@Service
+public class NewsFetcherServiceImpl implements NewsFetcherService {
+    DocumentBuilderFactory factory;
+    DocumentBuilder builder;
+
+    public NewsFetcherServiceImpl() throws ParserConfigurationException {
+        factory = DocumentBuilderFactory.newInstance();
+        builder = factory.newDocumentBuilder();
+    }
+
+    /**
+     * Opens a new connection to the URL, parses the XML and extracts a list of news.
+     *
+     * @param url - url from where to fetch the news. It should be: http://feeds.nos.nl/nosjournaal?format=xml
+     * @return a List<NewsEntity>
+     * @throws IOException
+     * @throws SAXException
+     * @throws XPathExpressionException
+     */
+    @Override
+    public List<NewsEntity> fetchNews(String url) throws IOException, SAXException, XPathExpressionException {
+        Document doc = builder.parse(new URL(url).openStream());
+        doc.getDocumentElement().normalize();
+
+        log.trace("Root Element :" + doc.getDocumentElement().getNodeName());
+        log.trace("------");
+
+        //get the <item> list of nodes
+        String expression = "/rss/channel/item";
+        XPath xPath = XPathFactory.newInstance().newXPath();
+        NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
+
+        List<NewsEntity> newsEntities = new ArrayList<>();
+        //foreach item(which is an article), extract title, description, publishedDate and imageUrl
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            log.trace("\nCurrent Element :" + node.getNodeName());
+
+            if (!node.getNodeName().equals("item")) continue;
+            if (!(node.getNodeType() == Node.ELEMENT_NODE)) continue;
+
+            Element element = (Element) node;
+            String title = element.getElementsByTagName("title").item(0).getTextContent();
+            String description = element.getElementsByTagName("description").item(0).getTextContent();
+            String imageUrl = element.getElementsByTagName("enclosure").item(0).getAttributes().getNamedItem("url").getTextContent();
+            String publishDateString = element.getElementsByTagName("pubDate").item(0).getTextContent();
+            OffsetDateTime publishedDate = OffsetDateTime.parse(publishDateString, DateTimeFormatter.ofPattern( "EEE, dd MMM yyyy HH:mm:ss X" , Locale.US));
+            newsEntities.add(NewsEntity.builder().title(title).description(description).imageUrl(imageUrl).publishedDate(publishedDate).build());
+            log.info("Fetched:\n Title: " + title + "\nPublished: " + publishedDate + "\nImageUrl: " + imageUrl + "\nDescription: " + description + "\n---------------------------------------");
+        }
+        return newsEntities;
+    }
+}
