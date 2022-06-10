@@ -22,20 +22,12 @@ public class NewsFetcherServiceUnitTests {
 
     private static final String link = "http://feeds.nos.nl/nosjournaal?format=xml";
 
-    @Mock
-    NewsRepository newsRepository;
-
     @InjectMocks
     NewsFetcherServiceImpl newsFetcher;
 
     @Test
-    @Disabled
-    public void testCleanTableNewsFetching(){
+    public void testNewsFetching(){
         List<NewsEntity> news = null;
-        Optional<NewsEntity> retrievedArticle = Optional.empty();
-
-        Mockito.when(newsRepository.findByTitle(anyString())).thenReturn(retrievedArticle);
-
         try {
             news = newsFetcher.fetchNews(link);
         } catch(Exception e){
@@ -44,5 +36,4 @@ public class NewsFetcherServiceUnitTests {
         Assertions.assertNotNull(news);
         Assertions.assertNotEquals(news.size(), 0);
     }
-
 }

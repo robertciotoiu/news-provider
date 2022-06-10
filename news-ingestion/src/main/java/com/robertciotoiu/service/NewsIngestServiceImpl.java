@@ -25,9 +25,14 @@ public class NewsIngestServiceImpl implements NewsIngestService {
      * Updates the articles only if new @NewsEntity.description or @NewsEntity.publishedDate is has been modified.
      * Ignores other existing unmodified articles.
      * @param fetchedEntities
+     * @return an int[] representing:
+     *                - number of new articles;
+     *                - number of successfully saved new articles;
+     *                - number of existing articles that have an update available;
+     *                - number of successfully saved existing articles that have an update available
      */
     @Override
-    public void saveFetchedNews(List<NewsEntity> fetchedEntities) {
+    public int[] saveFetchedNews(List<NewsEntity> fetchedEntities) {
         var existingArticles = fetchedEntities.stream()
                 //retrieve already saved articles
                 //save into a KeyValue pair: <fetched, retrieved>, we'll need both
@@ -67,5 +72,10 @@ public class NewsIngestServiceImpl implements NewsIngestService {
                 existingArticles.size(),
                 savedExistingArticles.size()
         );
+
+        return new int[]{newArticles.size(),
+                savedNewArticles.size(),
+                existingArticles.size(),
+                savedExistingArticles.size()};
     }
 }

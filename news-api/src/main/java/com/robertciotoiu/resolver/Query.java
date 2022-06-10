@@ -4,6 +4,8 @@ import com.robertciotoiu.model.NewsEntity;
 import com.robertciotoiu.repository.NewsRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,8 +18,13 @@ public class Query implements GraphQLQueryResolver {
         this.newsRepository = newsRepository;
     }
 
-    public Iterable<NewsEntity> findAllNews(){
-        return newsRepository.findAll();
+    public Iterable<NewsEntity> findAllNews(Integer page, Integer size){
+        //Safety check. TODO: better handle: https://www.baeldung.com/spring-graphql-error-handling
+        if(size > 100)
+            throw new UnsupportedOperationException("Lower the size and use pagination!");
+
+        Pageable pageable = PageRequest.of(page, size);
+        return newsRepository.findAll(pageable);
     }
 
     public Long countNews(){

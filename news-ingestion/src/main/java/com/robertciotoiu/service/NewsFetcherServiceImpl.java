@@ -35,15 +35,6 @@ public class NewsFetcherServiceImpl implements NewsFetcherService {
         builder = factory.newDocumentBuilder();
     }
 
-    /**
-     * Opens a new connection to the URL, parses the XML and extracts a list of news.
-     *
-     * @param url - url from where to fetch the news. It should be: http://feeds.nos.nl/nosjournaal?format=xml
-     * @return a List<NewsEntity>
-     * @throws IOException
-     * @throws SAXException
-     * @throws XPathExpressionException
-     */
     @Override
     public List<NewsEntity> fetchNews(String url) throws IOException, SAXException, XPathExpressionException {
         Document doc = builder.parse(new URL(url).openStream());
