@@ -1,4 +1,4 @@
-package com.robertciotoiu.model;
+package com.robertciotoiu.newsingestion.model;
 
 import lombok.*;
 

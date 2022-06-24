@@ -1,8 +1,8 @@
-package com.robertciotoiu;
+package com.robertciotoiu.newsingestion;
 
-import com.robertciotoiu.model.NewsEntity;
-import com.robertciotoiu.service.NewsFetcherService;
-import com.robertciotoiu.service.NewsIngestService;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newsingestion.service.NewsFetcherService;
+import com.robertciotoiu.newsingestion.service.NewsIngestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

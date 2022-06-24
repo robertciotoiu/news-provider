@@ -1,7 +1,7 @@
-package com.robertciotoiu.service;
+package com.robertciotoiu.newsingestion.service;
 
-import com.robertciotoiu.repository.NewsRepository;
-import com.robertciotoiu.model.NewsEntity;
+import com.robertciotoiu.newsingestion.repository.NewsRepository;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

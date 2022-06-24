@@ -1,4 +1,4 @@
-package com.robertciotoiu.config;
+package com.robertciotoiu.newsingestion.config;
 
 import graphql.language.StringValue;
 import graphql.schema.*;
@@ -31,8 +31,8 @@ public class GraphQLScalarConfiguration {
                     @Override
                     public @NonNull OffsetDateTime parseValue(final @NonNull Object input) {
                         try {
-                            if (input instanceof String) {
-                                return OffsetDateTime.parse((String) input, DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss X", Locale.US));
+                            if (input instanceof String inputString) {
+                                return OffsetDateTime.parse(inputString, DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss X", Locale.US));
                             } else {
                                 throw new CoercingParseValueException("Expected a String");
                             }
@@ -44,9 +44,9 @@ public class GraphQLScalarConfiguration {
 
                     @Override
                     public @NonNull OffsetDateTime parseLiteral(final @NonNull Object input) {
-                        if (input instanceof StringValue) {
+                        if (input instanceof StringValue inputStringValue) {
                             try {
-                                return OffsetDateTime.parse(((StringValue) input).getValue(), DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss X", Locale.US));
+                                return OffsetDateTime.parse((inputStringValue).getValue(), DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss X", Locale.US));
                             } catch (DateTimeParseException e) {
                                 throw new CoercingParseLiteralException(e);
                             }

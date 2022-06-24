@@ -1,7 +1,7 @@
-package com.robertciotoiu.resolver;
+package com.robertciotoiu.newsingestion.resolver;
 
-import com.robertciotoiu.model.NewsEntity;
-import com.robertciotoiu.repository.NewsRepository;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newsingestion.repository.NewsRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;

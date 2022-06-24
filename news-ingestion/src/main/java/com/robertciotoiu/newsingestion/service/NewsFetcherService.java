@@ -1,6 +1,6 @@
-package com.robertciotoiu.service;
+package com.robertciotoiu.newsingestion.service;
 
-import com.robertciotoiu.model.NewsEntity;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

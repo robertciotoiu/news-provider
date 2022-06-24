@@ -1,6 +1,6 @@
-package com.robertciotoiu.service;
+package com.robertciotoiu.newsingestion.service;
 
-import com.robertciotoiu.model.NewsEntity;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -55,7 +55,7 @@ public class NewsFetcherServiceImpl implements NewsFetcherService {
             log.trace("\nCurrent Element :" + node.getNodeName());
 
             if (!node.getNodeName().equals("item")) continue;
-            if (!(node.getNodeType() == Node.ELEMENT_NODE)) continue;
+            if (node.getNodeType() != Node.ELEMENT_NODE) continue;
 
             Element element = (Element) node;
             String title = element.getElementsByTagName("title").item(0).getTextContent();

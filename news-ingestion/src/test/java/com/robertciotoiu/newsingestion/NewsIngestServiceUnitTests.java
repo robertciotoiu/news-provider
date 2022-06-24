@@ -1,8 +1,8 @@
-package service.unit;
+package com.robertciotoiu.newsingestion;
 
-import com.robertciotoiu.model.NewsEntity;
-import com.robertciotoiu.repository.NewsRepository;
-import com.robertciotoiu.service.NewsIngestServiceImpl;
+import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newsingestion.repository.NewsRepository;
+import com.robertciotoiu.newsingestion.service.NewsIngestServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-public class NewsIngestServiceUnitTests {
+class NewsIngestServiceUnitTests {
 
     @Mock
     NewsRepository newsRepository;
@@ -26,7 +26,7 @@ public class NewsIngestServiceUnitTests {
     NewsIngestServiceImpl newsIngestService;
 
     @Test
-    public void testNewsIngestionOfOneUpdatedArticleAndTwoNewArticles(){
+    void testNewsIngestionOfOneUpdatedArticleAndTwoNewArticles(){
         //given
         var article1 = NewsEntity.builder().title("Test 1").description("-----").publishedDate(OffsetDateTime.MIN).imageUrl("not found").build();
         var article2 = NewsEntity.builder().title("Test 2").description("-----").publishedDate(OffsetDateTime.MAX).imageUrl("not found").build();
@@ -46,7 +46,7 @@ public class NewsIngestServiceUnitTests {
         var result = newsIngestService.saveFetchedNews(fetchedEntities);
 
         //then
-        Assertions.assertEquals(result[0], 2);
-        Assertions.assertEquals(result[2], 1);
+        Assertions.assertEquals(2, result[0]);
+        Assertions.assertEquals(1, result[2]);
     }
 }
