@@ -1,6 +1,6 @@
 package com.robertciotoiu.newsingestion;
 
-import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newscommons.model.NewsEntity;
 import com.robertciotoiu.newsingestion.service.NewsFetcherServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

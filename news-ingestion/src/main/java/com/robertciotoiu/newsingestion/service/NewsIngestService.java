@@ -1,6 +1,6 @@
 package com.robertciotoiu.newsingestion.service;
 
-import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newscommons.model.NewsEntity;
 
 import java.util.List;
 

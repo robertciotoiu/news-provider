@@ -1,6 +1,6 @@
 package com.robertciotoiu.newsingestion;
 
-import com.robertciotoiu.newsingestion.model.NewsEntity;
+import com.robertciotoiu.newscommons.model.NewsEntity;
 import com.robertciotoiu.newsingestion.service.NewsFetcherService;
 import com.robertciotoiu.newsingestion.service.NewsIngestService;
 import lombok.extern.slf4j.Slf4j;

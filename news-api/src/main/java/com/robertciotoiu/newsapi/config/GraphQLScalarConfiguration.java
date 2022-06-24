@@ -1,4 +1,4 @@
-package com.robertciotoiu.newsingestion.config;
+package com.robertciotoiu.newsapi.config;
 
 import graphql.language.StringValue;
 import graphql.schema.*;

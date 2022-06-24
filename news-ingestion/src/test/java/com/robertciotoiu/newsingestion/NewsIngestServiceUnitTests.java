@@ -1,7 +1,7 @@
 package com.robertciotoiu.newsingestion;
 
-import com.robertciotoiu.newsingestion.model.NewsEntity;
-import com.robertciotoiu.newsingestion.repository.NewsRepository;
+import com.robertciotoiu.newscommons.model.NewsEntity;
+import com.robertciotoiu.newscommons.repository.NewsRepository;
 import com.robertciotoiu.newsingestion.service.NewsIngestServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
