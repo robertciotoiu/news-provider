@@ -31,7 +31,7 @@ And add the GraphQL query in the body:
 
 ```graphql
 {
-    findAllNews{
+    getAllNews{
         title,
         description,
         publishedDate,
@@ -44,7 +44,7 @@ And add the GraphQL query in the body:
 Controling the pagination and size(default is 10):
 ```graphql
 {
-    findAllNews(page: 0, size: 5){
+    getAllNews(page: 0, size: 5){
         title,
         publishedDate,
         description
@@ -55,7 +55,7 @@ Controling the pagination and size(default is 10):
 Other examples:
 ```graphql
 {
-    findAllNews(page: 1, size: 10){
+    getAllNews(page: 1, size: 10){
         title,
         publishedDate,
         description
@@ -65,7 +65,7 @@ Other examples:
 
 ```graphql
 {
-    findAllNews{
+    getAllNews{
         title,
         publishedDate
     }

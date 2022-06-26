@@ -18,7 +18,7 @@ public class Query implements GraphQLQueryResolver {
         this.newsRepository = newsRepository;
     }
 
-    public Iterable<NewsEntity> findAllNews(Integer page, Integer size){
+    public Iterable<NewsEntity> getAllNews(Integer page, Integer size){
         //Safety check. TODO: better handle: https://www.baeldung.com/spring-graphql-error-handling
         if(size > 100)
             throw new UnsupportedOperationException("Lower the size and use pagination!");

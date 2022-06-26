@@ -8,7 +8,7 @@ type NewsEntity {
   updateDate: OffsetDateTime!
 }
 type Query{
-    findAllNews(page: Int = 0, size: Int = 10): [NewsEntity]!
+    getAllNews(page: Int = 0, size: Int = 10): [NewsEntity]!
     countNews: Int!
 }
 
