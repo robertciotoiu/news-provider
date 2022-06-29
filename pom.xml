@@ -6,7 +6,6 @@
 	<modules>
 		<module>news-ingestion</module>
 		<module>news-api</module>
-        <module>news-commons</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

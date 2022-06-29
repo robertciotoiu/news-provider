@@ -8,8 +8,14 @@ type NewsEntity {
   updateDate: OffsetDateTime!
 }
 type Query{
-    findAllNews(page: Int = 0, size: Int = 10): [NewsEntity]!
+    getAllNews(page: Int = 0, size: Int = 10): [NewsEntity]!
     countNews: Int!
+}
+
+type Mutation{
+    createNews(title: String!, description: String!, imageUrl: String!, publishedDate: String!, updateDate: String!): NewsEntity!
+    updateNews(title: String!): NewsEntity!
+    deleteNews(title: String!): NewsEntity!
 }
 
 "Built-in scalar representing a date-time with a UTC offset"
