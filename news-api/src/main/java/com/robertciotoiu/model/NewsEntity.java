@@ -20,11 +20,11 @@ public class NewsEntity {
     @NonNull
     @Column(name="title")
     private String title;
-    @Column(name="description")
-    private String description;
+    @Column(name="content")
+    private String content;
     @NonNull
-    @Column(name="published_date", columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private OffsetDateTime publishedDate;
+    @Column(name="publish_date", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime publishDate;
     @Column(name="update_date", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private OffsetDateTime updateDate;
     @Column(name="image_url")

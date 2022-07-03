@@ -1,0 +1,17 @@
+type NewsDTO{
+    title: String
+    content: String
+    imageUrl: String
+    publishDate: String
+    updateDate: String
+}
+
+mutation CreateNewsList($news: [NewsDTO]!){
+    createNewsList(newsList: $news){
+        title
+        content
+        imageUrl
+        publishDate
+        updateDate
+    }
+}

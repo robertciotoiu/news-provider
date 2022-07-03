@@ -1,22 +1,35 @@
 "Query root"
-type NewsEntity {
-  description: String!
-  id: Int!
-  imageUrl: String!
-  publishedDate: OffsetDateTime!
-  title: String!
-  updateDate: OffsetDateTime!
+input NewsDTO {
+    title: String!
+    content: String!
+    image: String!
+    publishDate: OffsetDateTime!
+    updatedAt: OffsetDateTime
 }
+
+type NewsEntity {
+    id: Int!
+    title: String!
+    content: String!
+    imageUrl: String!
+    publishDate: OffsetDateTime!
+    updateDate: OffsetDateTime!
+}
+
 type Query{
     getAllNews(page: Int = 0, size: Int = 10): [NewsEntity]!
     countNews: Int!
 }
 
 type Mutation{
-    createNews(title: String!, description: String!, imageUrl: String!, publishedDate: String!, updateDate: String!): NewsEntity!
+    createNewsList(newsList: [NewsDTO]!): [NewsEntity]!
+    createNews(title: String!, content: String!, imageUrl: String!, publishDate: String!, updateDate: String!): NewsEntity!
     updateNews(title: String!): NewsEntity!
     deleteNews(title: String!): NewsEntity!
 }
 
 "Built-in scalar representing a date-time with a UTC offset"
 scalar OffsetDateTime
+scalar String
+scalar Int
+scalar NewsEntity

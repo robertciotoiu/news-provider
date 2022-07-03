@@ -28,16 +28,16 @@ public class NewsIngestServiceUnitTests {
     @Test
     public void testNewsIngestionOfOneUpdatedArticleAndTwoNewArticles(){
         //given
-        var article1 = NewsEntity.builder().title("Test 1").description("-----").publishedDate(OffsetDateTime.MIN).imageUrl("not found").build();
-        var article2 = NewsEntity.builder().title("Test 2").description("-----").publishedDate(OffsetDateTime.MAX).imageUrl("not found").build();
-        var article3 = NewsEntity.builder().title("Test 3").description("-----").publishedDate(OffsetDateTime.MAX).imageUrl("not found").build();
+        var article1 = NewsEntity.builder().title("Test 1").content("-----").publishDate(OffsetDateTime.MIN).imageUrl("not found").build();
+        var article2 = NewsEntity.builder().title("Test 2").content("-----").publishDate(OffsetDateTime.MAX).imageUrl("not found").build();
+        var article3 = NewsEntity.builder().title("Test 3").content("-----").publishDate(OffsetDateTime.MAX).imageUrl("not found").build();
 
         List<NewsEntity> fetchedEntities = new ArrayList<>();
         fetchedEntities.add(article1);
         fetchedEntities.add(article2);
         fetchedEntities.add(article3);
 
-        article1.setDescription("new description");
+        article1.setContent("new content");
         Mockito.when(newsRepository.findByTitle("Test 1")).thenReturn(Optional.of(article1));
         Mockito.when(newsRepository.findByTitle("Test 2")).thenReturn(Optional.empty());
         Mockito.when(newsRepository.findByTitle("Test 3")).thenReturn(Optional.empty());

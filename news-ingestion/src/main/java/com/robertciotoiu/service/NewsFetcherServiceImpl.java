@@ -49,7 +49,7 @@ public class NewsFetcherServiceImpl implements NewsFetcherService {
         NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
 
         List<NewsEntity> newsEntities = new ArrayList<>();
-        //foreach item(which is an article), extract title, description, publishedDate and imageUrl
+        //foreach item(which is an article), extract title, content, publishDate and imageUrl
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
             log.trace("\nCurrent Element :" + node.getNodeName());
@@ -59,12 +59,12 @@ public class NewsFetcherServiceImpl implements NewsFetcherService {
 
             Element element = (Element) node;
             String title = element.getElementsByTagName("title").item(0).getTextContent();
-            String description = element.getElementsByTagName("description").item(0).getTextContent();
+            String content = element.getElementsByTagName("content").item(0).getTextContent();
             String imageUrl = element.getElementsByTagName("enclosure").item(0).getAttributes().getNamedItem("url").getTextContent();
             String publishDateString = element.getElementsByTagName("pubDate").item(0).getTextContent();
-            OffsetDateTime publishedDate = OffsetDateTime.parse(publishDateString, DateTimeFormatter.ofPattern( "EEE, dd MMM yyyy HH:mm:ss X" , Locale.US));
-            newsEntities.add(NewsEntity.builder().title(title).description(description).imageUrl(imageUrl).publishedDate(publishedDate).build());
-            log.info("Fetched:\n Title: " + title + "\nPublished: " + publishedDate + "\nImageUrl: " + imageUrl + "\nDescription: " + description + "\n---------------------------------------");
+            OffsetDateTime publishDate = OffsetDateTime.parse(publishDateString, DateTimeFormatter.ofPattern( "EEE, dd MMM yyyy HH:mm:ss X" , Locale.US));
+            newsEntities.add(NewsEntity.builder().title(title).content(content).imageUrl(imageUrl).publishDate(publishDate).build());
+            log.info("Fetched:\n Title: " + title + "\nPublish: " + publishDate + "\nImageUrl: " + imageUrl + "\nContent: " + content + "\n---------------------------------------");
         }
         return newsEntities;
     }

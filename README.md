@@ -33,8 +33,8 @@ And add the GraphQL query in the body:
 {
     getAllNews{
         title,
-        description,
-        publishedDate,
+        content,
+        publishDate,
         imageUrl
     }
 }
@@ -46,8 +46,8 @@ Controling the pagination and size(default is 10):
 {
     getAllNews(page: 0, size: 5){
         title,
-        publishedDate,
-        description
+        publishDate,
+        content
     }
 }
 ```
@@ -57,8 +57,8 @@ Other examples:
 {
     getAllNews(page: 1, size: 10){
         title,
-        publishedDate,
-        description
+        publishDate,
+        content
     }
 }
 ```
@@ -67,7 +67,7 @@ Other examples:
 {
     getAllNews{
         title,
-        publishedDate
+        publishDate
     }
 }
 ```
@@ -104,3 +104,16 @@ One Maven parent project, packing three Maven modules:
 </pre>
 
 Doc reference: https://spring.io/projects/spring-graphql#learn
+
+TODO:
+- DTO object
+- Graphql Query
+- Graphql Mutation
+- 
+https://medium.com/decathlontechnology/minimal-graphql-client-request-with-spring-boot-22e0041b170
+
+https://spring.io/projects/spring-cloud/
+
+https://www.youtube.com/watch?v=LkmhwaxlduQ&ab_channel=TechTutor
+
+https://github.com/2much2learn/article_dec_28_mavengradle-based-multi-module-spring-boot-microservices/blob/master/service-a/src/main/java/com/toomuch2learn/microservices/servicea/GreetingController.java

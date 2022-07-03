@@ -22,7 +22,7 @@ public class NewsIngestServiceImpl implements NewsIngestService {
 
     /**
      * Saves new articles to the news table.
-     * Updates the articles only if new @NewsEntity.description or @NewsEntity.publishedDate is has been modified.
+     * Updates the articles only if new @NewsEntity.content or @NewsEntity.publishDate is has been modified.
      * Ignores other existing unmodified articles.
      * @param fetchedEntities
      * @return an int[] representing:
@@ -45,9 +45,9 @@ public class NewsIngestServiceImpl implements NewsIngestService {
         //get existing articles with new data
         var articlesToUpdate = existingArticles.stream()
                 //filter by publishDate
-                .filter(pair -> pair.getKey().getPublishedDate().equals(pair.getValue().getUpdateDate()))
-                //filter by description
-                .filter(pair -> pair.getKey().getDescription().equals(pair.getValue().getDescription()))
+                .filter(pair -> pair.getKey().getPublishDate().equals(pair.getValue().getUpdateDate()))
+                //filter by content
+                .filter(pair -> pair.getKey().getContent().equals(pair.getValue().getContent()))
                 //prepare entities for DB update
                 .peek(pair -> pair.getKey().setId(pair.getValue().getId()))
                 //map and return save to a list for using the batch operation: saveAllAndFlush
